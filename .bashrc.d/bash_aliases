@@ -1,0 +1,3 @@
+function fserve() {
+    mkdir fserve_data ; filebrowser --noauth -a 192.168.0.130 -r ./fserve_data ; rm -rf ./fserve_data ; rm ./filebrowser.db
+}
