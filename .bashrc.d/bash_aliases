@@ -1,3 +1,14 @@
+alias private_ipv4_address="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+
+# podman socket needs to be registered first
+# systemctl --user enable --now podman.socket
+alias lazypodman='DOCKER_HOST=unix:///run/user/1000/podman/podman.sock lazydocker'
+
 function fserve() {
-    mkdir fserve_data ; filebrowser --noauth -a 192.168.0.130 -r ./fserve_data ; rm -rf ./fserve_data ; rm ./filebrowser.db
+    local private_ipv4_address="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
+
+    # echo "$private_ipv4_address"
+
+    # serve file share on ./fserve_data. After file share will stop ./fserve_data and ./filebrowser.db will get deleted
+    mkdir fserve_data ; filebrowser --noauth -a "$private_ipv4_address" -r ./fserve_data ; rm -rf ./fserve_data ; rm ./filebrowser.db
 }

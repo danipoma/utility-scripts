@@ -23,3 +23,5 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
+
+eval "$(/home/danipoma/.local/bin/mise activate bash)"
