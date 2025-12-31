@@ -2,7 +2,8 @@ alias private_ipv4_address="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(
 
 # podman socket needs to be registered first
 # systemctl --user enable --now podman.socket
-alias lazypodman='DOCKER_HOST=unix:///run/user/1000/podman/podman.sock lazydocker'
+export DOCKER_HOST='unix:///run/user/1000/podman/podman.sock'
+alias docker='podman'
 
 function fserve() {
     local private_ipv4_address="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
