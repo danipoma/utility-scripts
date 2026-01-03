@@ -35,4 +35,5 @@ export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
+eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
