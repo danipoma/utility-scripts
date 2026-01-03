@@ -25,3 +25,14 @@ fi
 unset rc
 
 eval "$(/home/danipoma/.local/bin/mise activate bash)"
+. "$HOME/.cargo/env"
+
+# Wasmer
+export WASMER_DIR="/home/danipoma/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
+eval "$(zoxide init bash)"
