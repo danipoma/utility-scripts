@@ -37,3 +37,19 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
+
+if [[ -z "$ZELLIJ" ]]; then
+    export ZELLIJ_AUTO_ATTACH="true"
+    export ZELLIJ_AUTO_EXIT="true"
+
+    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+        zellij attach -c
+    else
+        zellij
+    fi
+
+    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+        exit
+    fi
+fi
+
