@@ -24,6 +24,8 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
+export EDITOR="hx"
+
 eval "$(/home/danipoma/.local/bin/mise activate bash)"
 . "$HOME/.cargo/env"
 
