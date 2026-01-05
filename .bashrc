@@ -40,9 +40,12 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
-if [[ -z "$ZELLIJ" ]]; then
-    export ZELLIJ_AUTO_ATTACH="true"
-    export ZELLIJ_AUTO_EXIT="true"
+# We also check for $KDE_FULL_SESSION since SSDM doesn't handle Zellij
+# so we postpone autorunning zellij until we are in session fully.
+# Gave me a scare that I was seeing black screen, but tty handled it like a champ
+if [[ -z "$ZELLIJ" && $KDE_FULL_SESSION == "true" ]]; then
+    ZELLIJ_AUTO_ATTACH="true"
+    ZELLIJ_AUTO_EXIT="true"
 
     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
         zellij attach -c
@@ -54,4 +57,3 @@ if [[ -z "$ZELLIJ" ]]; then
         exit
     fi
 fi
-
